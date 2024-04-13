@@ -35,10 +35,17 @@ function App() {
 
   const [currentOptions, setCurrentOptions] = useState([]);
   const [open, setOpen] = React.useState(false);
+  const [categoryCardSize, setCategoryCardSize] = useState();
+  const [optionCardSize, setOptionCardSize] = useState();
 
   const handleClickOpen = (categoryId) => {
     const selectedCategory = categoryOptions.find(cat => cat.id === categoryId);
     if (selectedCategory) {
+      let cardSize = 6;
+      if (selectedCategory.options.length + 1 > 4) {
+        cardSize = 4;
+      }
+      setOptionCardSize(cardSize);
       setCurrentOptions(selectedCategory.options);
       setOpen(true);
     }
@@ -82,11 +89,11 @@ function App() {
         </div>
         <Grid className="options-container" container spacing={2}>
           {currentOptions.map((option, index) => (
-            <Grid key={index} item xs={6}>
+            <Grid key={index} item xs={optionCardSize}>
               <OptionCard name={option.optionName} img={option.optionImg}/>
             </Grid>
           ))}
-          <Grid item xs={6}>
+          <Grid item xs={optionCardSize}>
             <button className="option-card" id="add-option-button"> Add Option </button>
           </Grid>
         </Grid>
