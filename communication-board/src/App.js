@@ -43,15 +43,17 @@ function App() {
       ]
     }
   ]);
-
+  const [currentCategory, setCurrentCategory] = useState();
   const [currentOptions, setCurrentOptions] = useState([]);
   const [openOptions, setOpenOptions] = React.useState(false);
   const [openAddCategory, setOpenAddCategory] = React.useState(false);
   const [openAddOption, setOpenAddOption] = React.useState(false);
   const [categoryCardSize, setCategoryCardSize] = useState(6);
-  const [optionCardSize, setOptionCardSize] = useState();
+  const [optionCardSize, setOptionCardSize] = useState(6);
   const newCategoryName = useRef('');
   const newCategoryImage = useRef('');
+  const newOptionName = useRef('');
+  const newOptionImage = useRef('');
 
   const handleClickOpenOptions = (categoryId) => {
     const selectedCategory = categoryOptions.find(cat => cat.id === categoryId);
@@ -61,6 +63,7 @@ function App() {
         cardSize = 4;
       }
       setOptionCardSize(cardSize);
+      setCurrentCategory(selectedCategory);
       setCurrentOptions(selectedCategory.options);
       setOpenOptions(true);
     }
@@ -70,7 +73,7 @@ function App() {
     setOpenOptions(false);
   };
 
-  const handleClickOpenAddCategory = (categoryId) => {
+  const handleClickOpenAddCategory = () => {
     setOpenAddCategory(true);
   };
 
@@ -79,7 +82,6 @@ function App() {
   };
 
   const handleAddCategory = () => {
-    console.log("add category");
     let newCategory = {
       id: categories.length + 2,
       categoryName: newCategoryName.current.value,
@@ -93,6 +95,42 @@ function App() {
     setCategoryCardSize(cardSize);
     console.log("added category: ", newCategory);
     handleCloseAddCategory();
+  };
+
+  const handleClickOpenAddOption = () => {
+    setOpenAddOption(true);
+  };
+
+  const handleCloseAddOption = () => {
+    setOpenAddOption(false);
+  };
+
+  const handleAddOption= () => {
+    let newOption = {
+      optionName: newOptionName.current.value,
+      optionImg: newOptionImage.current.value
+    }
+    let cardSize = 6;
+    if (currentCategory.options.length + 2 > 4) {
+      cardSize = 4;
+    }
+    setCategoryOptions(prevOptions => {
+      return prevOptions.map(category => {
+        if (category.id === currentCategory.id) {
+          return {
+            ...category,
+            options: [...category.options, newOption]
+          };
+        }
+        return category;
+      });
+    });
+    setOptionCardSize(cardSize);
+    console.log("card size: ", optionCardSize);
+    setCurrentOptions(prevOptions => [...prevOptions, newOption]);
+    console.log("added option: ", newOption);
+    console.log("card size: ", optionCardSize);
+    handleCloseAddOption();
   };
 
 
@@ -140,7 +178,7 @@ function App() {
             </Grid>
           ))}
           <Grid style={{ height: "50%" }} item xs={optionCardSize}>
-            <button className="option-card" id="add-option-button"> Add Option </button>
+            <button className="option-card" id="add-option-button" onClick={handleClickOpenAddOption}> Add Option </button>
           </Grid>
         </Grid>
       </Dialog>
@@ -148,6 +186,12 @@ function App() {
       <Dialog
         open={openAddCategory}
         onClose={handleCloseAddCategory}
+        sx={{
+          '& .MuiPaper-root': {
+              width: "400px",
+              height: "300px",
+          },
+      }}
       >
         <DialogTitle>Add Category</DialogTitle>
         <DialogContent id="dialog-content">
@@ -165,6 +209,35 @@ function App() {
         <DialogActions>
             <Button onClick={handleCloseAddCategory}>Cancel</Button>
             <Button onClick={handleAddCategory}>Add</Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog
+        open={openAddOption}
+        onClose={handleCloseAddOption}
+        sx={{
+          '& .MuiPaper-root': {
+              width: "400px",
+              height: "300px",
+          },
+      }}
+      >
+        <DialogTitle>Add Option</DialogTitle>
+        <DialogContent id="dialog-content">
+            <TextField
+                id="option-name"
+                label="Option Name"
+                inputRef={newOptionName}
+            />
+            <TextField
+                id="category-image"
+                label="Option Image URL"
+                inputRef={newOptionImage}
+            />
+        </DialogContent>
+        <DialogActions>
+            <Button onClick={handleCloseAddOption}>Cancel</Button>
+            <Button onClick={handleAddOption}>Add</Button>
         </DialogActions>
       </Dialog>
     </div>
