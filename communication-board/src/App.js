@@ -83,9 +83,15 @@ function App() {
     let newCategory = {
       id: categories.length + 2,
       categoryName: newCategoryName.current.value,
-      categoryImg: ""
+      categoryImg: newCategoryImage.current.value
+    }
+    let cardSize = 6;
+    if (categories.length + 2 > 4) {
+      cardSize = 4;
     }
     setCategories([...categories, newCategory]);
+    setCategoryCardSize(cardSize);
+    console.log("added category: ", newCategory);
     handleCloseAddCategory();
   };
 

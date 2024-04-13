@@ -17,9 +17,10 @@
 
 #image-container {
     height: 50%;
-    width: auto;
+    width: 95%;
 }
 
 #image {
     height: 100%;
+    width: 100%;
 }
