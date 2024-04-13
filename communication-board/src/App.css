@@ -3,6 +3,7 @@
   height: 100vh;
   text-align: center;
   background: grey;
+  overflow: hidden;
 }
 
 .categories-container {

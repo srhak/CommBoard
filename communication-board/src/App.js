@@ -19,7 +19,7 @@ function App() {
           </Grid>
         ))}
         <Grid item xs={6}>
-          <button>Add button</button>
+          <CategoryCard name="Add Category" />
         </Grid>
       </Grid>
     </div>
