@@ -2,10 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import './CategoryCard.css';
 
 function CategoryCard(props) {
-    const { name, img } = props;
+    const { name, img, openDialog } = props;
     return (
         <div className='container'>
-            <button className="category-card">{name}</button>
+            <button onClick={openDialog} className="category-card">{name}</button>
         </div>
     );
 }
