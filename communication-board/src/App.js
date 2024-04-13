@@ -10,27 +10,33 @@ import './Components/OptionCard.css';
 
 function App() {
   const [categories, setCategories] = useState([
-    {id: 1, categoryName: "Responses", categoryImg: ""},
-    {id: 2, categoryName: "Feelings", categoryImg: ""},
-    {id: 3, categoryName: "Actions", categoryImg: ""}
+    { id: 1, categoryName: "Responses", categoryImg: "https://t3.ftcdn.net/jpg/04/98/54/90/360_F_498549008_hnjyK9dXffqOph3C4H6lHrSz3sP1BWhV.jpg" },
+    { id: 2, categoryName: "Feelings", categoryImg: "" },
+    { id: 3, categoryName: "Actions", categoryImg: "" }
   ]);
 
   const [categoryOptions, setCategoryOptions] = useState([
-    {id: 1, options: [
-      {optionName: "Yes", optionImg: ""},
-      {optionName: "No", optionImg: ""},
-      {optionName: "Maybe", optionImg: ""}
-    ]},
-    {id: 2, options: [
-      {optionName: "Happy", optionImg: ""},
-      {optionName: "Sad", optionImg: ""},
-      {optionName: "Angry", optionImg: ""},
-      {optionName: "Neutral", optionImg: ""}
-    ]},
-    {id: 3, options: [
-      {optionName: "Eat", optionImg: ""},
-      {optionName: "Restroom", optionImg: ""}
-    ]}
+    {
+      id: 1, options: [
+        { optionName: "Yes", optionImg: "https://cdn2.iconfinder.com/data/icons/perfect-flat-icons-2/512/Ok_check_yes_tick_accept_success_green_correct.png" },
+        { optionName: "No", optionImg: "" },
+        { optionName: "Maybe", optionImg: "" }
+      ]
+    },
+    {
+      id: 2, options: [
+        { optionName: "Happy", optionImg: "" },
+        { optionName: "Sad", optionImg: "" },
+        { optionName: "Angry", optionImg: "" },
+        { optionName: "Neutral", optionImg: "" }
+      ]
+    },
+    {
+      id: 3, options: [
+        { optionName: "Eat", optionImg: "" },
+        { optionName: "Restroom", optionImg: "" }
+      ]
+    }
   ]);
 
   const [currentOptions, setCurrentOptions] = useState([]);
@@ -59,10 +65,10 @@ function App() {
     <div className="App">
       <Grid className="categories-container" container spacing={2}>
         {categories.map((category) => (
-          <Grid key={category.id} item xs={6}>
+          <Grid style={{ height: "50%" }} key={category.id} item xs={6}>
             <CategoryCard
               name={category.categoryName}
-              img={category.categoryImg}
+              imgUrl={category.categoryImg}
               openDialog={() => handleClickOpen(category.id)}
             />
           </Grid>
@@ -75,25 +81,30 @@ function App() {
         fullScreen
         open={open}
         onClose={handleClose}
+        className="dialog"
+        sx={{
+          '& .MuiDialog-paper': {
+              backgroundColor: 'var(--blue)',
+          },
+      }}
       >
         <div className="dialog-toolbar">
           <IconButton
             edge="start"
-            color="inherit"
             onClick={handleClose}
             aria-label="close"
             id="close-button"
           >
-            <CloseIcon fontSize="large" />
+            <CloseIcon sx={{color: "whitesmoke"}} fontSize="large" />
           </IconButton>
         </div>
         <Grid className="options-container" container spacing={2}>
           {currentOptions.map((option, index) => (
-            <Grid key={index} item xs={optionCardSize}>
-              <OptionCard name={option.optionName} img={option.optionImg}/>
+            <Grid key={index} style={{ height: "50%" }} item xs={optionCardSize}>
+              <OptionCard name={option.optionName} imgUrl={option.optionImg} />
             </Grid>
           ))}
-          <Grid item xs={optionCardSize}>
+          <Grid style={{ height: "50%" }} item xs={optionCardSize}>
             <button className="option-card" id="add-option-button"> Add Option </button>
           </Grid>
         </Grid>
