@@ -5,6 +5,8 @@ import Dialog from '@mui/material/Dialog';
 import CategoryCard from './Components/CategoryCard';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
+import OptionCard from './Components/OptionCard';
+import './Components/OptionCard.css';
 
 function App() {
   const [categories, setCategories] = useState([
@@ -12,10 +14,34 @@ function App() {
     {id: 2, categoryName: "Feelings", categoryImg: ""},
     {id: 3, categoryName: "Actions", categoryImg: ""}
   ]);
+
+  const [categoryOptions, setCategoryOptions] = useState([
+    {id: 1, options: [
+      {optionName: "Yes", optionImg: ""},
+      {optionName: "No", optionImg: ""},
+      {optionName: "Maybe", optionImg: ""}
+    ]},
+    {id: 2, options: [
+      {optionName: "Happy", optionImg: ""},
+      {optionName: "Sad", optionImg: ""},
+      {optionName: "Angry", optionImg: ""},
+      {optionName: "Neutral", optionImg: ""}
+    ]},
+    {id: 3, options: [
+      {optionName: "Eat", optionImg: ""},
+      {optionName: "Restroom", optionImg: ""}
+    ]}
+  ]);
+
+  const [currentOptions, setCurrentOptions] = useState([]);
   const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
+  const handleClickOpen = (categoryId) => {
+    const selectedCategory = categoryOptions.find(cat => cat.id === categoryId);
+    if (selectedCategory) {
+      setCurrentOptions(selectedCategory.options);
+      setOpen(true);
+    }
   };
 
   const handleClose = () => {
@@ -27,7 +53,11 @@ function App() {
       <Grid className="categories-container" container spacing={2}>
         {categories.map((category) => (
           <Grid key={category.id} item xs={6}>
-            <CategoryCard name={category.categoryName} img={category.categoryImg} openDialog={handleClickOpen}/>
+            <CategoryCard
+              name={category.categoryName}
+              img={category.categoryImg}
+              openDialog={() => handleClickOpen(category.id)}
+            />
           </Grid>
         ))}
         <Grid item xs={6}>
@@ -39,16 +69,27 @@ function App() {
         open={open}
         onClose={handleClose}
       >
-        <div>
+        <div className="dialog-toolbar">
           <IconButton
             edge="start"
             color="inherit"
             onClick={handleClose}
             aria-label="close"
+            id="close-button"
           >
-            <CloseIcon />
+            <CloseIcon fontSize="large" />
           </IconButton>
         </div>
+        <Grid className="options-container" container spacing={2}>
+          {currentOptions.map((option, index) => (
+            <Grid key={index} item xs={6}>
+              <OptionCard name={option.optionName} img={option.optionImg}/>
+            </Grid>
+          ))}
+          <Grid item xs={6}>
+            <button className="option-card" id="add-option-button"> Add Option </button>
+          </Grid>
+        </Grid>
       </Dialog>
     </div>
   );

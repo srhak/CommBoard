@@ -12,4 +12,24 @@
   padding: 2%;
 }
 
+.options-container {
+  width: 100%;
+  height: 93%;
+  padding: 2%;
+}
+
+.dialog-toolbar {
+  width: 100%;
+  height: 7%;
+}
+
+#close-button {
+  height: 100%;
+  width: 5%;
+}
+
+#add-option-button {
+  border: none;
+  cursor: pointer;
+}
 
