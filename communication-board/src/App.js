@@ -146,8 +146,8 @@ function App() {
             />
           </Grid>
         ))}
-        <Grid item xs={categoryCardSize}>
-          <CategoryCard name="Add Category" openDialog={handleClickOpenAddCategory}/>
+        <Grid style={{ height: "50%" }} item xs={categoryCardSize}>
+          <CategoryCard name="Add Category" imgUrl="https://cdn.icon-icons.com/icons2/834/PNG/512/plus_icon-icons.com_66718.png" openDialog={handleClickOpenAddCategory}/>
         </Grid>
       </Grid>
       <Dialog
@@ -178,7 +178,7 @@ function App() {
             </Grid>
           ))}
           <Grid style={{ height: "50%" }} item xs={optionCardSize}>
-            <button className="option-card" id="add-option-button" onClick={handleClickOpenAddOption}> Add Option </button>
+            <CategoryCard className="option-card" name="Add Option" imgUrl="https://cdn.icon-icons.com/icons2/834/PNG/512/plus_icon-icons.com_66718.png" openDialog={handleClickOpenAddOption}/>
           </Grid>
         </Grid>
       </Dialog>
