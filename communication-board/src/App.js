@@ -1,23 +1,27 @@
-import logo from './logo.svg';
+import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
+import Grid from '@mui/material/Grid';
+import CategoryCard from './Components/CategoryCard';
 
 function App() {
+  const [categories, setCategories] = useState([
+    {categoryName: "Responses", categoryImg: ""},
+    {categoryName: "Feelings", categoryImg: ""},
+    {categoryName: "Actions", categoryImg: ""}
+  ]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Grid className="categories-container" container spacing={2}>
+        {categories.map((category, index) => (
+          <Grid key={index} item xs={6}>
+            <CategoryCard name={category.categoryName} img={category.categoryImg}/>
+          </Grid>
+        ))}
+        <Grid item xs={6}>
+          <button>Add button</button>
+        </Grid>
+      </Grid>
     </div>
   );
 }
