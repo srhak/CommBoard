@@ -16,30 +16,30 @@ import './Components/OptionCard.css';
 function App() {
   const [categories, setCategories] = useState([
     { id: 1, categoryName: "Responses", categoryImg: "https://t3.ftcdn.net/jpg/04/98/54/90/360_F_498549008_hnjyK9dXffqOph3C4H6lHrSz3sP1BWhV.jpg" },
-    { id: 2, categoryName: "Feelings", categoryImg: "" },
-    { id: 3, categoryName: "Actions", categoryImg: "" }
+    { id: 2, categoryName: "Feelings", categoryImg: "https://cdn-icons-png.flaticon.com/512/3269/3269660.png" },
+    { id: 3, categoryName: "Actions", categoryImg: "https://rowlandsgillprimary.org/wp-content/uploads/2020/05/activities-clipart-transparent-4.png" }
   ]);
 
   const [categoryOptions, setCategoryOptions] = useState([
     {
       id: 1, options: [
         { optionName: "Yes", optionImg: "https://cdn2.iconfinder.com/data/icons/perfect-flat-icons-2/512/Ok_check_yes_tick_accept_success_green_correct.png" },
-        { optionName: "No", optionImg: "" },
-        { optionName: "Maybe", optionImg: "" }
+        { optionName: "No", optionImg: "https://t4.ftcdn.net/jpg/05/58/98/43/360_F_558984324_bFquLdaGfaQUxKUyUvsT4G9fgxdAewpM.jpg" },
+        { optionName: "Maybe", optionImg: "https://upload.wikimedia.org/wikipedia/commons/f/f6/Lol_question_mark.png" }
       ]
     },
     {
       id: 2, options: [
-        { optionName: "Happy", optionImg: "" },
-        { optionName: "Sad", optionImg: "" },
-        { optionName: "Angry", optionImg: "" },
-        { optionName: "Neutral", optionImg: "" }
+        { optionName: "Happy", optionImg: "https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTExL3JtNTg2YmF0Y2gyLWVtb2ppLTAwNi5wbmc.png" },
+        { optionName: "Sad", optionImg: "https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTExL3JtNTg2YmF0Y2gyLWVtb2ppLTAwM18xLmpwZw.jpg" },
+        { optionName: "Angry", optionImg: "https://i.pinimg.com/originals/85/6c/72/856c72c52a0be9efbc5315927e1fff85.png" },
+        { optionName: "Neutral", optionImg: "https://em-content.zobj.net/source/twitter/348/neutral-face_1f610.png" }
       ]
     },
     {
       id: 3, options: [
-        { optionName: "Eat", optionImg: "" },
-        { optionName: "Restroom", optionImg: "" }
+        { optionName: "Eat", optionImg: "https://static.thenounproject.com/png/882200-200.png" },
+        { optionName: "Restroom", optionImg: "https://icon2.cleanpng.com/20180214/xaw/kisspng-toilet-bathroom-ico-icon-restroom-vector-cliparts-5a84e6e0c55496.2231485115186592968083.jpg" }
       ]
     }
   ]);
